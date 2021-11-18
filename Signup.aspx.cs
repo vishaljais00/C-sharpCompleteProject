@@ -7,11 +7,16 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using WebApplication1.Class;
+
 namespace WebApplication1
 {
     public partial class Signup : System.Web.UI.Page
     {
+
+        
         public string StrCon = "Data Source=VISHAL;  Initial Catalog = Users; User Id=sa; Password=9818";
+        EncryptionAndDecryption obj = new EncryptionAndDecryption();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,12 +26,14 @@ namespace WebApplication1
         {
             try
             {
+                
+
 
                 SqlConnection conn = new SqlConnection(StrCon);
                 DataSet ds = new DataSet();
-                SqlDataAdapter adapter = new SqlDataAdapter("select 1 from dbo._User Where Name = '" + Name.Text + " ' and [password] = '" + password1.Text + "'", conn);
+                SqlDataAdapter adapter = new SqlDataAdapter("select 1 from dbo._User Where Name = '" + Name.Text + " ' and [password] = '" + obj.DecryptString( password1.Text) + "'", conn);
                 string sql = null;
-                sql = "insert into _User (Name,Email,password,Phone) values('"+ Name.Text + "', '" + Email.Text + "', '" + password1.Text + "','" + Phone.Text + "')";
+                sql = "insert into _User (Name,Email,password,Phone) values('"+ Name.Text + "', '" + Email.Text + "', '" + obj.EnryptString(password1.Text) + "','" + Phone.Text + "')";
 
                 conn.Open();
                 adapter.Fill(ds);
@@ -37,7 +44,7 @@ namespace WebApplication1
                 {
                     lblError.Text = " please fill form correctly";
                 }
-                else if (password1.Text != password2.Text)
+                else if (password1.Text.ToString().Trim().ToLower() != password2.Text.ToString().Trim().ToLower())
                 {
                     lblError1.Text = "password dos not match"; 
                 }
@@ -88,6 +95,8 @@ namespace WebApplication1
         protected void btnLogin_Click(object Sender, EventArgs e)
         {
             Response.Redirect("Login.aspx", true);
+            
         }
     }
 }
+

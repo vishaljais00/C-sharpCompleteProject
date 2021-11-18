@@ -39,12 +39,14 @@
          <div class="form-group">
     <label for="exampleInputEmail1"> User Id:</label>
        <asp:TextBox  ID="Name" class="form-control" aria-describedby="emailHelp" runat="server"></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="Name" runat="server" ValidationGroup="SIGN_UP" ForeColor="Red" ErrorMessage="Enter Your Name"></asp:RequiredFieldValidator>
        
   </div>
 
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
         <asp:TextBox  ID="password1" TextMode="Password" class="form-control" aria-describedby="emailHelp" runat="server"></asp:TextBox>
+      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="password1" runat="server" ValidationGroup="SIGN_UP" ForeColor="Red" ErrorMessage="Enter Your Password"></asp:RequiredFieldValidator>
         
 
   </div>
@@ -53,7 +55,9 @@
          <div class="form-group">
     <label for="exampleInputPassword1"> Confirm Password</label>
         <asp:TextBox  ID="password2" TextMode="Password" class="form-control" aria-describedby="emailHelp" runat="server"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="password2" runat="server" ValidationGroup="SIGN_UP" ForeColor="Red" ErrorMessage="Re Enter Your Password"></asp:RequiredFieldValidator>
              <asp:Label ID="lblError1" runat="server" ForeColor="Red" Text=""></asp:Label>
+
                   
         
 
@@ -62,18 +66,25 @@
          <div class="form-group">
     <label for="exampleInputPassword1">Email</label>
         <asp:TextBox ID="Email" TextMode="Email" class="form-control" aria-describedby="emailHelp" runat="server"></asp:TextBox>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="signup"  ControlToValidate="Email"   
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="Email" runat="server" ValidationGroup="SIGN_UP" ForeColor="Red" ErrorMessage=" Enter Your Email"></asp:RequiredFieldValidator>
+             <div>
+                  <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="SIGN_UP"  ControlToValidate="Email"   
        ErrorMessage="Please enter valid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"> </asp:RegularExpressionValidator>  
+     
+             </div>
+            
+        
         
   </div>
  
          <div class="form-group">
     <label for="exampleInputPassword1">Phone</label>
         <asp:TextBox  ID="Phone" TextMode="Number" class="form-control" aria-describedby="emailHelp" runat="server"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="Phone" runat="server" ValidationGroup="SIGN_UP" ForeColor="Red" ErrorMessage="Enter Your Phone No"></asp:RequiredFieldValidator>
         
 
   </div>
-   <asp:Button  ID="SignUp" type="submit" class="btn btn-primary" runat="server" Text="Signup" ValidationGroup="signup" OnClick="signup_click" />
+   <asp:Button  ID="SignUp" type="submit" class="btn btn-primary" runat="server" Text="Signup" ValidationGroup="SIGN_UP" OnClick="signup_click" />
    <asp:Label ID="lblError" runat="server" ForeColor="Red" Text=""></asp:Label>
         
 
